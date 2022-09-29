@@ -1,13 +1,18 @@
 import React from 'react';
 
-import Head from 'next/head';
+import  '../CSS/antdMobile.css';
+import AppLayout from '../components/AppLayout'; 
+import 'antd/dist/antd.css';
 import wrapper from '../store/configureStore';
 
 
 const init = ({ Component, pageProps }) => (
     <div>
-         <Component {...pageProps} />
+        <AppLayout>
+            <Component {...pageProps} />
+        </AppLayout>
     </div>
+
   );
 
 

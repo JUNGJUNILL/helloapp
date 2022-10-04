@@ -328,3 +328,9 @@ img {
   src:url('../public/BMHANNAPro.ttf');
   font-family: "Hanna";
 }
+
+@font-face {
+
+  src:url('../public/Roboto-Medium.ttf');
+  font-family: "Roboto";
+}

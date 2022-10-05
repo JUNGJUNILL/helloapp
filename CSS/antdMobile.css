@@ -331,6 +331,13 @@ img {
 
 @font-face {
 
+  src:url('../public/Roboto-BlackItalic.ttf');
+  font-family: "Roboto-BlackItalic";
+}
+
+
+@font-face {
+
   src:url('../public/Roboto-Medium.ttf');
-  font-family: "Roboto";
+  font-family: "Roboto-Medium";
 }

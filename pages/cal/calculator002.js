@@ -4,10 +4,9 @@ import FadeIn from 'react-fade-in';
 import Head from "next/head";
 import wrapper from '../../store/configureStore';
 
-
 const { Option } = Select;
 
-const calculator001=({
+const calculator002 =({
     SEOKEYWORD001,
     SEOKEYWORD002,
     SEOKEYWORD003,
@@ -26,79 +25,80 @@ const calculator001=({
     SEOKEYWORD016,
     SEOKEYWORD017})=>{
 
-    const [dollar,setDollar] = useState(''); 
-    const [percent,setPercent] = useState(''); 
-    const [check,setCheck] = useState('up');
-    const [result,setResult] =useState(0); 
-    const [showFolmula,setShowFolmula] = useState(false);
-    const focusDollar= createRef(); 
-
-
-    useEffect(()=>{
-        focusDollar.current.focus(); 
-
-    },[])
-
-    const onChangeDollar =useCallback((e) =>{
-        setDollar(e.target.value); 
-
-        const intDollar = e.target.value?parseInt(e.target.value):0; 
-        const intPercent= percent?parseInt(percent):0; 
-        let resultValue=0; 
-
-        if(check==='up'){
-            resultValue=intDollar*((100)+intPercent)/100; 
-            setResult(resultValue);
-        }else{
-            resultValue=intDollar*((100)-intPercent)/100; 
-            setResult(resultValue);
-        }
-
-    },[dollar])
-
-
-    const onChangePercent=useCallback((e)=>{
-        setPercent(e.target.value); 
-
-        const intDollar = dollar?parseInt(dollar):0; 
-        const intPercent= e.target.value?parseInt(e.target.value):0; 
-        let resultValue=0; 
-
-        if(check==='up'){
-            resultValue=intDollar*((100)+intPercent)/100; 
-            setResult(resultValue);
-        }else{
-            resultValue=intDollar*((100)-intPercent)/100; 
-            setResult(resultValue);
-        }
-
-    },[dollar,percent])
-
-    const onChangeCondition = useCallback((value)=>{
-        const intDollar = dollar?parseInt(dollar):0; 
-        const intPercent= percent?parseInt(percent):0; 
-        let resultValue=0; 
-  
-        if(value==='up'){
-            resultValue=intDollar*((100)+intPercent)/100; 
-            setResult(resultValue);
-        }else{
-            resultValue=intDollar*((100)-intPercent)/100; 
-            setResult(resultValue);
-        }
-        setCheck(value); 
+        const [dollar,setDollar] = useState(''); 
+        const [percent,setPercent] = useState(''); 
+        const [check,setCheck] = useState('up');
+        const [result,setResult] =useState(0); 
+        const [showFolmula,setShowFolmula] = useState(false);
+        const focusDollar= createRef(); 
+    
+    
+        useEffect(()=>{
+            focusDollar.current.focus(); 
+    
+        },[])
+    
+        const onChangeDollar =useCallback((e) =>{
+            setDollar(e.target.value); 
+    
+            const intDollar = e.target.value?parseInt(e.target.value):0; 
+            const intPercent= percent?parseInt(percent):0; 
+            let resultValue=0; 
+    
+            if(check==='up'){
+                resultValue=intDollar*((100)+intPercent)/100; 
+                setResult(resultValue);
+            }else{
+                resultValue=intDollar*((100)-intPercent)/100; 
+                setResult(resultValue);
+            }
+    
+        },[dollar])
+    
+    
+        const onChangePercent=useCallback((e)=>{
+            setPercent(e.target.value); 
+    
+            const intDollar = dollar?parseInt(dollar):0; 
+            const intPercent= e.target.value?parseInt(e.target.value):0; 
+            let resultValue=0; 
+    
+            if(check==='up'){
+                resultValue=intDollar*((100)+intPercent)/100; 
+                setResult(resultValue);
+            }else{
+                resultValue=intDollar*((100)-intPercent)/100; 
+                setResult(resultValue);
+            }
+    
+        },[dollar,percent])
+    
+        const onChangeCondition = useCallback((value)=>{
+            const intDollar = dollar?parseInt(dollar):0; 
+            const intPercent= percent?parseInt(percent):0; 
+            let resultValue=0; 
       
-        
-    },[check,dollar,percent,check,result])
+            if(value==='up'){
+                resultValue=intDollar*((100)+intPercent)/100; 
+                setResult(resultValue);
+            }else{
+                resultValue=intDollar*((100)-intPercent)/100; 
+                setResult(resultValue);
+            }
+            setCheck(value); 
+          
+            
+        },[check,dollar,percent,check,result])
 
 
-    const onClickShowformula=useCallback(()=>{
-        setShowFolmula(true)
+        const onClickShowformula=useCallback(()=>{
+            setShowFolmula(true)
+    
+        },[showFolmula])
 
-    },[showFolmula])
 
-    return (
-        <div>  
+        return(
+            <div>  
             <Head>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" ></meta>
@@ -112,7 +112,7 @@ const calculator001=({
             </Head>
 
             <div style={{width:'100%',textAlign:"center",marginTop:'5%'}}>
-                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'4vh'}}>Finding increase rate and decrease rate</font>
+                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'4vh'}}>How many Percent have Risen?</font>
             </div>
             
             <div className='imgDiv' style={{marginTop:'5%'}}>
@@ -186,51 +186,56 @@ const calculator001=({
             </div>
             </FadeIn>
         </div>   
-    )
-}
+        )
 
+
+
+}
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
 
-    const SEOKEYWORD001='Online calculator';
-    const SEOKEYWORD002='Google calculator';
-    const SEOKEYWORD003='Online calculator';
-    const SEOKEYWORD004='Math calculator';
-    const SEOKEYWORD005='Scientific calculator online';
-    const SEOKEYWORD006='Percentage calculator';
-    const SEOKEYWORD007='Calculus calculator';
-    const SEOKEYWORD008='Root calculator';
-    const SEOKEYWORD009='ratio';
-    const SEOKEYWORD010='rate';
-    const SEOKEYWORD011='Simple calculator';
-    const SEOKEYWORD012='Unit rate';
-    const SEOKEYWORD013='Calculator online';
-    const SEOKEYWORD014='Interest rate calculator';
-    const SEOKEYWORD015='Ratio calculator';
-    const SEOKEYWORD016='Proportion ratio';
-    const SEOKEYWORD017='Ratio of a to b';
+ const SEOKEYWORD001='Online calculator';
+ const SEOKEYWORD002='Google calculator';
+ const SEOKEYWORD003='Online calculator';
+ const SEOKEYWORD004='Math calculator';
+ const SEOKEYWORD005='Scientific calculator online';
+ const SEOKEYWORD006='Percentage calculator';
+ const SEOKEYWORD007='Calculus calculator';
+ const SEOKEYWORD008='Root calculator';
+ const SEOKEYWORD009='ratio';
+ const SEOKEYWORD010='rate';
+ const SEOKEYWORD011='Simple calculator';
+ const SEOKEYWORD012='Unit rate';
+ const SEOKEYWORD013='Calculator online';
+ 
+ const SEOKEYWORD014='Interest rate calculator';
+ const SEOKEYWORD015='Ratio calculator';
+ const SEOKEYWORD016='Proportion ratio';
+ const SEOKEYWORD017='Ratio of a to b';
 
-    return{
-        props: {SEOKEYWORD001,
-                SEOKEYWORD002,
-                SEOKEYWORD003,
-                SEOKEYWORD004,
-                SEOKEYWORD005,
-                SEOKEYWORD006,
-                SEOKEYWORD007,
-                SEOKEYWORD008,
-                SEOKEYWORD009,
-                SEOKEYWORD010,
-                SEOKEYWORD011,
-                SEOKEYWORD012,
-                SEOKEYWORD013,
-                SEOKEYWORD014,
-                SEOKEYWORD015,
-                SEOKEYWORD016,
-                SEOKEYWORD017,
-        }, // will be passed to the page component as props
-    }
+ return{
+     props: {SEOKEYWORD001,
+             SEOKEYWORD002,
+             SEOKEYWORD003,
+             SEOKEYWORD004,
+             SEOKEYWORD005,
+             SEOKEYWORD006,
+             SEOKEYWORD007,
+             SEOKEYWORD008,
+             SEOKEYWORD009,
+             SEOKEYWORD010,
+             SEOKEYWORD011,
+             SEOKEYWORD012,
+             SEOKEYWORD013,
+             SEOKEYWORD014,
+             SEOKEYWORD015,
+             SEOKEYWORD016,
+             SEOKEYWORD017,
+     }, // will be passed to the page component as props
+ }
+
 
 });
 
-export default calculator001; 
+
+export default calculator002; 

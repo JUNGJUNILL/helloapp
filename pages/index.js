@@ -18,7 +18,7 @@ const Home =()=>{
 
     <div>
       <Link href={{pathname:'/cal/calculator001'}}><a>page1</a></Link>
-      <Link href={{pathname:'/cal/calculator002'}}><a>page1</a></Link>
+      <Link href={{pathname:'/cal/calculator002'}}><a>page2</a></Link>
 
     </div>
    

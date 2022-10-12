@@ -25,8 +25,8 @@ const calculator002 =({
     SEOKEYWORD016,
     SEOKEYWORD017})=>{
 
-        const [dollar,setDollar] = useState(''); 
-        const [percent,setPercent] = useState(''); 
+        const [dollar,setDollar] = useState(0); 
+        const [dollar2,setDollar2] = useState(0); 
         const [check,setCheck] = useState('up');
         const [result,setResult] =useState(0); 
         const [showFolmula,setShowFolmula] = useState(false);
@@ -42,58 +42,34 @@ const calculator002 =({
             setDollar(e.target.value); 
     
             const intDollar = e.target.value?parseInt(e.target.value):0; 
-            const intPercent= percent?parseInt(percent):0; 
+            const intdollar2= dollar2?parseInt(dollar2):0; 
             let resultValue=0; 
-    
-            if(check==='up'){
-                resultValue=intDollar*((100)+intPercent)/100; 
-                setResult(resultValue);
-            }else{
-                resultValue=intDollar*((100)-intPercent)/100; 
-                setResult(resultValue);
-            }
-    
-        },[dollar])
-    
-    
-        const onChangePercent=useCallback((e)=>{
-            setPercent(e.target.value); 
-    
-            const intDollar = dollar?parseInt(dollar):0; 
-            const intPercent= e.target.value?parseInt(e.target.value):0; 
-            let resultValue=0; 
-    
-            if(check==='up'){
-                resultValue=intDollar*((100)+intPercent)/100; 
-                setResult(resultValue);
-            }else{
-                resultValue=intDollar*((100)-intPercent)/100; 
-                setResult(resultValue);
-            }
-    
-        },[dollar,percent])
-    
-        const onChangeCondition = useCallback((value)=>{
-            const intDollar = dollar?parseInt(dollar):0; 
-            const intPercent= percent?parseInt(percent):0; 
-            let resultValue=0; 
-      
-            if(value==='up'){
-                resultValue=intDollar*((100)+intPercent)/100; 
-                setResult(resultValue);
-            }else{
-                resultValue=intDollar*((100)-intPercent)/100; 
-                setResult(resultValue);
-            }
-            setCheck(value); 
-          
             
-        },[check,dollar,percent,check,result])
+            resultValue = ((intdollar2-intDollar)/intDollar)*100;
+            setResult(resultValue); 
+    
+        },[dollar,dollar2,result])
+    
+    
+        const onChangedollar2=useCallback((e)=>{
+            setDollar2(e.target.value); 
+
+            const intDollar = dollar?parseInt(dollar):0; 
+            const intdollar2= e.target.value?parseInt(e.target.value):0; 
+
+            let resultValue=0; 
+            
+            resultValue = ((intdollar2-intDollar)/intDollar)*100;
+            setResult(resultValue); 
+    
+
+        },[dollar,dollar2,result])
+
 
 
         const onClickShowformula=useCallback(()=>{
-            setShowFolmula(true)
-    
+            setShowFolmula(true);
+
         },[showFolmula])
 
 
@@ -112,11 +88,11 @@ const calculator002 =({
             </Head>
 
             <div style={{width:'100%',textAlign:"center",marginTop:'5%'}}>
-                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'4vh'}}>How many Percent have Risen?</font>
+                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'4vh'}}>How many percent did you go up or down?</font>
             </div>
             
             <div className='imgDiv' style={{marginTop:'5%'}}>
-                <div className='imgTextCenter' style={{fontFamily:'Roboto-BlackItalic',fontSize:'3vh'}}>What is the price of bacon?</div>
+                <div className='imgTextCenter' style={{fontFamily:'Roboto-BlackItalic',fontSize:'3vh'}}>Did the bacon price rise? Did you get off?</div>
                 <div className='imgTextSEO'>{SEOKEYWORD001}</div>
                 <div className='imgTextSEO'>{SEOKEYWORD002}</div>
                 <div className='imgTextSEO'>{SEOKEYWORD003}</div>
@@ -140,12 +116,12 @@ const calculator002 =({
             </div>
 
             <div style={{width:'100%',textAlign:"center",marginTop:'3%'}}>
-                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'5vh'}} >${result}</font>        
+                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'5vh'}} >{Math.abs(result.toFixed(2))}% {parseInt(dollar) < parseInt(dollar2)?'increase.':parseInt(dollar)===parseInt(dollar2)?'':'decrease.'}</font>        
             </div>
        
             <div style={{width:'100%',textAlign:"center",marginTop:'3%'}}>
                 <font style={{fontFamily:'Roboto-Medium',fontSize:'3vh'}}>
-                Bacon is $
+                Bacon was $
                             <Input  
                                     ref={focusDollar}
                                     placeholder='A'
@@ -155,26 +131,18 @@ const calculator002 =({
                                     onChange={onChangeDollar} 
                                     style={{width:'100px',marginBottom:'1%',textAlign:'center'}}  
                         />
-                , but it's <Select defaultValue={check} size='large' onChange={onChangeCondition}>
-                                <Option value="up">up</Option>
-                                <Option value="down">down</Option>
-                        </Select>       
-                        &nbsp;<Input placeholder='B'
+                , but now it's $<Input placeholder='B'
                                         type='number'   
                                         size='large'
-                                        value={percent}
-                                        onChange={onChangePercent}
-                                        style={{width:'70px',marginBottom:'1%',textAlign:'center'}}  
-                        />
-                percent.
+                                        value={dollar2}
+                                        onChange={onChangedollar2}
+                                        style={{width:'100px',marginBottom:'1%',textAlign:'center'}}  
+                        />.
                 </font>
             </div>
 
-
-            
-
             <div style={{width:'100%',textAlign:"center"}}>
-                <font style={{fontFamily:'Roboto-Medium',fontSize:'3vh'}}>What is the price of bacon?</font>      
+                <font style={{fontFamily:'Roboto-Medium',fontSize:'3vh'}}>How many percent have {parseInt(dollar) < parseInt(dollar2)?'increase.':parseInt(dollar)===parseInt(dollar2)?'':'decrease.'}</font>      
             </div>
 
             <div style={{width:'100%',textAlign:"center",marginTop:'3%'}}>
@@ -182,7 +150,7 @@ const calculator002 =({
             </div>
             <FadeIn delay={100} visible={showFolmula}>
             <div style={{fontFamily:'Roboto-BlackItalic',fontSize:'3vh',textAlign:"center",marginTop:'3%'}} >
-                {`${dollar} * ((100)${check==='up'?'+':'-'}${percent}) / 100` }
+                {`((${dollar2} - ${dollar}) / ${dollar}) * 100` }
             </div>
             </FadeIn>
         </div>   
@@ -199,7 +167,7 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
  const SEOKEYWORD003='Online calculator';
  const SEOKEYWORD004='Math calculator';
  const SEOKEYWORD005='Scientific calculator online';
- const SEOKEYWORD006='Percentage calculator';
+ const SEOKEYWORD006='dollar2age calculator';
  const SEOKEYWORD007='Calculus calculator';
  const SEOKEYWORD008='Root calculator';
  const SEOKEYWORD009='ratio';

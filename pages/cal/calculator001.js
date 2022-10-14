@@ -112,7 +112,7 @@ const calculator001=({
             </Head>
 
             <div style={{width:'100%',textAlign:"center",marginTop:'5%'}}>
-                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'4vh'}}>Finding increase rate and decrease rate</font>
+                <font style={{fontFamily:'Roboto-BlackItalic',fontSize:'4vh'}}>Finding increase rate and decrease rate.</font>
             </div>
             
             <div className='imgDiv' style={{marginTop:'5%'}}>
@@ -148,7 +148,7 @@ const calculator001=({
                 Bacon is $
                             <Input  
                                     ref={focusDollar}
-                                    placeholder='A'
+                                    placeholder='$'
                                     type='number'    
                                     size='large'   
                                     value={dollar}        
@@ -159,7 +159,7 @@ const calculator001=({
                                 <Option value="up">up</Option>
                                 <Option value="down">down</Option>
                         </Select>       
-                        &nbsp;<Input placeholder='B'
+                        &nbsp;<Input placeholder='%'
                                         type='number'   
                                         size='large'
                                         value={percent}
@@ -168,13 +168,6 @@ const calculator001=({
                         />
                 percent.
                 </font>
-            </div>
-
-
-            
-
-            <div style={{width:'100%',textAlign:"center"}}>
-                <font style={{fontFamily:'Roboto-Medium',fontSize:'3vh'}}>What is the price of bacon?</font>      
             </div>
 
             <div style={{width:'100%',textAlign:"center",marginTop:'3%'}}>

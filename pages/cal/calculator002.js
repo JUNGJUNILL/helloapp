@@ -25,9 +25,8 @@ const calculator002 =({
     SEOKEYWORD016,
     SEOKEYWORD017})=>{
 
-        const [dollar,setDollar] = useState(0); 
-        const [dollar2,setDollar2] = useState(0); 
-        const [check,setCheck] = useState('up');
+        const [dollar,setDollar] = useState(''); 
+        const [dollar2,setDollar2] = useState(''); 
         const [result,setResult] =useState(0); 
         const [showFolmula,setShowFolmula] = useState(false);
         const focusDollar= createRef(); 
@@ -92,7 +91,7 @@ const calculator002 =({
             </div>
             
             <div className='imgDiv' style={{marginTop:'5%'}}>
-                <div className='imgTextCenter' style={{fontFamily:'Roboto-BlackItalic',fontSize:'3vh'}}>Did the bacon price rise? Did you get off?</div>
+                <div className='imgTextCenter' style={{fontFamily:'Roboto-BlackItalic',fontSize:'3vh'}}>Has the price of bacon increased? Has it decreased?</div>
                 <div className='imgTextSEO'>{SEOKEYWORD001}</div>
                 <div className='imgTextSEO'>{SEOKEYWORD002}</div>
                 <div className='imgTextSEO'>{SEOKEYWORD003}</div>
@@ -124,14 +123,14 @@ const calculator002 =({
                 Bacon was $
                             <Input  
                                     ref={focusDollar}
-                                    placeholder='A'
+                                    placeholder='$'
                                     type='number'    
                                     size='large'   
                                     value={dollar}        
                                     onChange={onChangeDollar} 
                                     style={{width:'100px',marginBottom:'1%',textAlign:'center'}}  
                         />
-                , but now it's $<Input placeholder='B'
+                , but now it's $<Input placeholder='$'
                                         type='number'   
                                         size='large'
                                         value={dollar2}

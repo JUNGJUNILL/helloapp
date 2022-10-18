@@ -1,5 +1,28 @@
+import wrapper from '../../store/configureStore';
+import { useState,useCallback,createRef,useEffect, useTransition } from 'react';
+import Head from "next/head";
 
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+  } from 'chart.js';
 
+  import { Bar } from 'react-chartjs-2';
+
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+  );
+//https://velog.io/@ksh4820/react-chartjs-2-%EA%B7%B8%EB%9E%98%ED%94%84
 const calculator004 = ({
     SEOKEYWORD001,
     SEOKEYWORD002,
@@ -20,11 +43,64 @@ const calculator004 = ({
     SEOKEYWORD017})=>{
 
 
+        const options = {
+            responsive: true,
+            plugins: {
+                legend: {
+                display:false,
+                //position: 'bottom',
+                },
+                title: {
+                display: true,
+                text: 'finding the proportion of things',
+                },
+            },
+        };
+
+        const [val, setVal] =useState(false); 
+        const [label,setLabel] = useState(['#1', '#2', '#3', '#4', '#5']);
+        const [datas,setDatas] = useState([10,20,5,5,10]);
+        
+
+        let rankColor = ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"]
+        //let hello=[10,20,5,5,10]; 
+        let sum=0; 
+
+        datas.map((v)=>{
+            sum+=v; 
+        });
 
 
-    return(
-        <div>
+        const data = {
+            labels:  label.map((v,i)=>{
             
+                let ratio = (datas[i]/sum)*100
+                return v+ '\n'+ratio+'%';
+            }),
+            datasets: [
+                {
+                  backgroundColor: rankColor,
+                  borderColor: rankColor,
+                 
+                  hoverBackgroundColor: rankColor,
+                  hoverBorderColor: rankColor,
+                  data: datas,
+
+                }
+              ]
+
+        }
+
+        const test = () =>{
+            setLabel([...label,'hello']);  
+            setDatas([...datas,Math.floor(Math.random() * 10)]); 
+        }
+        
+        return(
+        <div>
+            <input type="text" value={val}/>
+            <input type="button" value="show ratio" onClick={test} />
+            <Bar options={options} data={data} />
         </div>
     )
 

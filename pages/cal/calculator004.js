@@ -79,7 +79,7 @@ const calculator004 = ({
             labels:  label.map((v,i)=>{
             
                 let ratio = (datas[i]/sum)*100
-                return v+ '\n'+ratio+'%';
+                return v+ '\n'+ratio.toFixed(2)+'%';
             }),
             datasets: [
                 {
@@ -97,7 +97,7 @@ const calculator004 = ({
 
         const test = () =>{
             setLabel([...label,'hello']);  
-            setDatas([...datas,Math.floor(Math.random() * 10)]); 
+            setDatas([...datas,Math.floor(Math.random() * 80)]); 
         }
         
         return(

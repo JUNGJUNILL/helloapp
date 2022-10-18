@@ -23,6 +23,10 @@ import {
     Legend
   );
 //https://velog.io/@ksh4820/react-chartjs-2-%EA%B7%B8%EB%9E%98%ED%94%84
+//https://react-chartjs-2.js.org/
+//https://github.com/reactchartjs/react-chartjs-2
+//https://www.chartjs.org/docs/latest/samples/bar/vertical.html
+//https://codesandbox.io/s/github/reactchartjs/react-chartjs-2/tree/master/sandboxes/bar/vertical?from-embed=&file=/App.tsx:446-450
 const calculator004 = ({
     SEOKEYWORD001,
     SEOKEYWORD002,

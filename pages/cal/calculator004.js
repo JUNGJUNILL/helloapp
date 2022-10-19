@@ -54,30 +54,35 @@ const calculator004 = ({
                 display:false,
                 //position: 'bottom',
                 },
+
                 title: {
                 display: true,
                 text: 'finding the proportion of things',
+                fontSize:100,
                 },
+
+                scale :{
+                    fontSize: 50,
+                }
             },
         };
 
-        const [val, setVal] =useState(false); 
         const [label,setLabel] = useState(['#1', '#2', '#3', '#4', '#5']);
         const [datas,setDatas] = useState([10,20,5,5,10]);
-        
+        //const [sum,setSum]=useState(0);  
 
         let rankColor = ["#11b288", "#207ac7", "#207ac7", "#207ac7", "#d6d6d6", "#d6d6d6", "#d6d6d6", "#d6d6d6"]
         //let hello=[10,20,5,5,10]; 
         let sum=0; 
-
+       // let sumdata=0; 
         datas.map((v)=>{
-            sum+=v; 
+            let value = parseInt(v); 
+            sum+=value; 
         });
 
-
         const data = {
-            labels:  label.map((v,i)=>{
             
+            labels:  label.map((v,i)=>{
                 let ratio = (datas[i]/sum)*100
                 return v+ '\n'+ratio.toFixed(2)+'%';
             }),
@@ -99,10 +104,28 @@ const calculator004 = ({
             setLabel([...label,'hello']);  
             setDatas([...datas,Math.floor(Math.random() * 80)]); 
         }
+        const focusDollar= createRef(); 
+        const [num1,setNum1] =useState(0);  
         
+        const test2 =(e)=>{
+            let num = e.target.value; 
+            setNum1(num); 
+            datas[0]=e.target.value?e.target.value:0; 
+            const copy1 = [...datas]; 
+            setDatas([...copy1]);
+            
+        }
+
+        const hello = () =>{
+            focusDollar.current.focus();
+            
+        }
+
         return(
         <div>
-            <input type="text" value={val}/>
+            <div>{sum}</div>
+            <input type="button" value="test" onClick={hello} />
+            <input type="number" ref={focusDollar} value={num1} onChange={test2}/>
             <input type="button" value="show ratio" onClick={test} />
             <Bar options={options} data={data} />
         </div>

@@ -20,6 +20,7 @@ const Home =()=>{
       <Link href={{pathname:'/cal/calculator001'}}><a>page1</a></Link>
       <Link href={{pathname:'/cal/calculator002'}}><a>page2</a></Link>
       <Link href={{pathname:'/cal/calculator003'}}><a>page3</a></Link>
+      <Link href={{pathname:'/cal/calculator004'}}><a>page4</a></Link>
 
     </div>
    

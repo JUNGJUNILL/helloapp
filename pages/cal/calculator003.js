@@ -35,7 +35,7 @@ const calculator003 =({
     
     
         useEffect(()=>{
-            //focusDollar.current.focus(); 
+            focusDollar.current.focus(); 
     
         },[])
     
